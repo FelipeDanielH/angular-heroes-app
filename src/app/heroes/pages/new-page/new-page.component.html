@@ -1,7 +1,6 @@
 <h1>
-  Editar / Agregar
+  {{ currentHero.id ? 'Editar' : 'Nuevo' }}
   heroe
-  <small>Superman</small>
 </h1>
 
 <mat-divider class="mb-2"></mat-divider>
@@ -65,10 +64,13 @@
         </form>
 
         <div class="flex justify-content-between">
-          <button mat-flat-button
+            <button *ngIf="currentHero.id"
+          mat-flat-button
                   color="warn">
             Borrar
           </button>
+          <!-- Este span evita que el boton guardar quede en la esquina izquierda -->
+          <span></span>
 
           <button mat-flat-button
                   color="primary"

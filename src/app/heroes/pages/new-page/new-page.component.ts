@@ -12,12 +12,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styles: [
   ]
 })
-export class NewPageComponent implements OnInit{
+export class NewPageComponent implements OnInit {
 
   public heroForm = new FormGroup({
     id: new FormControl<string>(''),
     superhero: new FormControl<string>(''),
-    publisher: new FormControl<Publisher>( Publisher.DCComics ),
+    publisher: new FormControl<Publisher>(Publisher.DCComics),
     alter_ego: new FormControl(''),
     first_appearance: new FormControl(''),
     characters: new FormControl(''),
@@ -34,55 +34,61 @@ export class NewPageComponent implements OnInit{
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private snackbar: MatSnackBar,
-    ) {}
-
-  ngOnInit(): void {
-    if( !this.router.url.includes('edit') ) return
-
-
-
-    this.activatedRoute.params
-      .pipe(
-        // 'id' viene desestructurado de "params"
-        switchMap( ({id}) => this.heroesService.getHeroeById( id ) ),
-      ).subscribe( hero => {
-
-        if( !hero ) return this.router.navigateByUrl('/')
-
-        // el metodo reset recibe un objeto y si encuentra coincidencia en sus campos (en este caso los del heroe) reemplaza sus valores
-        this.heroForm.reset( hero )
-        return
-      })
-
-  }
+  ) { }
 
   get currentHero(): Hero {
     const hero = this.heroForm.value as Hero;
     return hero
   }
 
-  onSubmit():void {
-    if(this.heroForm.invalid ) return
+  ngOnInit(): void {
+    if (!this.router.url.includes('edit')) return
 
 
 
-    if( this.currentHero.id ) {
-      this.heroesService.updateHero( this.currentHero )
-      .subscribe( hero => {
-        console.log(this.currentHero)
-        // TODO mostrar snackbar
+    this.activatedRoute.params
+      .pipe(
+        // 'id' viene desestructurado de "params"
+        switchMap(({ id }) => this.heroesService.getHeroeById(id)),
+      ).subscribe(hero => {
+
+        if (!hero) return this.router.navigateByUrl('/')
+
+        // el metodo reset recibe un objeto y si encuentra coincidencia en sus campos (en este caso los del heroe) reemplaza sus valores
+        this.heroForm.reset(hero)
+        return
       })
+
+  }
+
+
+
+  onSubmit(): void {
+    if (this.heroForm.invalid) return
+
+
+
+    if (this.currentHero.id) {
+      this.heroesService.updateHero(this.currentHero)
+        .subscribe(hero => {
+          this.showSnackBar(`${hero.superhero} updated`)
+        })
 
       return
     }
 
-    this.heroesService.addHero( this.currentHero )
-    .subscribe( hero => {
-      // TODO mostrar snackbar y navegar a /heroes/edit/hero.id
-    })
+    this.heroesService.addHero(this.currentHero)
+      .subscribe(hero => {
+        this.router.navigate(['/heores/edit', hero.id]);
+        this.showSnackBar(`${hero.superhero} created`)
+      })
   }
 
-
+  showSnackBar(message: string): void {
+    this.snackbar.open(message, 'done', {
+      duration: 2500
+    })
+  }
 
 
 
