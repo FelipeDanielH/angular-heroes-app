@@ -21,7 +21,8 @@
       "publisher": "DC Comics",
       "alter_ego": "Kal-El",
       "first_appearance": "Action Comics #1",
-      "characters": "Kal-El"
+      "characters": "Kal-El",
+      "alt_img": "https://w0.peakpx.com/wallpaper/856/559/HD-wallpaper-superman-new-52-comics-dc-hero-justice-league-man-of-steel-new-52-superman.jpg"
     },
     {
       "id": "dc-flash",
@@ -166,6 +167,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "AQ4SBNU",
+      "superhero": "spawn",
+      "publisher": "Marvel Comics",
+      "alter_ego": "al simmons",
+      "first_appearance": "Spawn #1",
+      "characters": "spawn",
+      "alt_img": "https://cdnx.jumpseller.com/shazam-online/image/27278633/spawn_guerra_abierta.jpg"
     }
   ]
 }
