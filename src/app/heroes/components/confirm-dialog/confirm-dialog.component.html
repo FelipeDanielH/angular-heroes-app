@@ -1,0 +1,13 @@
+<h1 mat-dialog-title> Borrar Heroes</h1>
+<div mat-dialog-content>
+  <p>¿Esta seguro que desea borrar este heroe?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button
+          (click)="onNoClick()">No Gracias</button>
+
+          <span class="spacer"></span>
+  <button mat-button
+          (click)="onConfirm()"
+          cdkFocusInitial>Ok</button>
+</div>
