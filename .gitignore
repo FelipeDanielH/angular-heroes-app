@@ -43,3 +43,5 @@ Thumbs.db
 
 # Personales
 /data
+data/db-back.json
+data/db.json
